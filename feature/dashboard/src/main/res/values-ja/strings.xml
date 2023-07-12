@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ok">OK</string>
+    <string name="enter_amount_to_convert">換算する金額を入力してください…</string>
+    <string name="choose_currency">通貨を選んでください</string>
+</resources>

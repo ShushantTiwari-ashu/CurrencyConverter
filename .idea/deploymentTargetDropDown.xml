@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="DashboardRouteKtTest">
+        <State />
+      </entry>
+      <entry key="MainActivityTest">
+        <State />
+      </entry>
+      <entry key="app">
+        <State />
+      </entry>
+      <entry key="testMainActivity()">
+        <State />
+      </entry>
+      <entry key="test_currency_chooser_to_select_currency()">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="$USER_HOME$/.android/avd/Pixel_7_Pro_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2023-07-11T16:13:47.727052Z" />
+        </State>
+      </entry>
+      <entry key="test_exchange_rates_ui()">
+        <State />
+      </entry>
+    </value>
+  </component>
+</project>
