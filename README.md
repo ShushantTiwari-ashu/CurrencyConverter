@@ -1,6 +1,3 @@
-Sure! Here's the README.md code for the Currency Converter Android Compose Multi-Module Project:
-
-```markdown
 # Currency Converter - Android Compose Multi-Module Project
 
 Currency Converter is an Android project built using Jetpack Compose and follows a multi-module architecture. It provides the functionality to convert currency from one to another, with various modules handling different aspects of the application.
@@ -75,10 +72,3 @@ Contributions to the Currency Converter project are welcome! If you find a bug, 
 ## License
 
 The Currency Converter project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code for personal and commercial projects.
-
----
-
-This README.md provides an overview of the Currency Converter project, its features, setup instructions, usage guidelines, architecture, dependencies, and licensing information. Customize the details based on your actual project and update the sections with relevant information.
-```
-
-You can copy and paste this markdown code into the README.md file of your Currency Converter Android Compose Multi-Module Project. Customize the details and update the sections to match your project's specifics.
