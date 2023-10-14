@@ -20,7 +20,6 @@ dependencyResolutionManagement {
     }
 }
 
-
 rootProject.name = "CurrencyConverter"
 include(":app")
 include(":core:network")

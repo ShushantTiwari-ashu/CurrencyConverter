@@ -2,6 +2,7 @@ package dev.shushant.data.repository
 
 import dev.shushant.data.TestCurrencyDao
 import dev.shushant.data.TestCurrencyExchangeRateDao
+import dev.shushant.data.utils.AppDispatcher
 import dev.shushant.database.entity.CurrenciesEntity
 import dev.shushant.database.entity.CurrenciesExchangeRateEntity
 import dev.shushant.database.model.LocalDataSource
@@ -36,6 +37,9 @@ class CurrencyRepositoryImplTest {
     @MockK
     private lateinit var networkDataSource: NetworkDataSource
 
+    @MockK
+    private lateinit var dispatcher: AppDispatcher
+
 
     private lateinit var localDataSource: LocalDataSource
 
@@ -46,7 +50,7 @@ class CurrencyRepositoryImplTest {
             currencyDao = TestCurrencyDao(),
             currencyExchangeRatesDao = TestCurrencyExchangeRateDao()
         )
-        currencyRepository = CurrencyRepositoryImpl(networkDataSource, localDataSource)
+        currencyRepository = CurrencyRepositoryImpl(networkDataSource, localDataSource, dispatcher)
     }
 
 
@@ -99,7 +103,7 @@ class CurrencyRepositoryImplTest {
             localDataSource.currencyDao.insertCurrencies(
                 CurrenciesEntity(
                     currencies = currencies,
-                    timeStamp = kotlinx.datetime.Clock.System.now().minus(30.minutes)
+                    timeStamp = Clock.System.now().minus(30.minutes)
                         .toEpochMilliseconds()
                 )
             )
@@ -114,7 +118,7 @@ class CurrencyRepositoryImplTest {
         }
 
     @Test
-    fun `test fetch currencies failure usecase`() = runTest(dispatcherRule.testDispatcher) {
+    fun `test fetch currencies failure use case`() = runTest(dispatcherRule.testDispatcher) {
         setFailureData()
         val networkData = currencyRepository.getCurrencies()
         assert(networkData.isFailure)
@@ -181,9 +185,9 @@ class CurrencyRepositoryImplTest {
         }
 
     @Test
-    fun `test fetch exchange rate failure usecase`() = runTest(dispatcherRule.testDispatcher) {
+    fun `test fetch exchange rate failure use case`() = runTest(dispatcherRule.testDispatcher) {
         setFailureData()
-        val networkData = currencyRepository.getCurrencyExchangeRate("ABC","")
+        val networkData = currencyRepository.getCurrencyExchangeRate("ABC", "")
         assert(networkData.isFailure)
     }
 

@@ -8,5 +8,13 @@ plugins {
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.secrets) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.sonarqube)
 }
-true // Needed to make the Suppress annotation work for the plugins block
+sonarqube {
+    properties {
+        property("sonar.host.url", "http://localhost:9000")
+        property("sonar.projectKey", "CurrencyConverter")
+        property("sonar.projectName", "CurrencyConverter")
+        property("sonar.token", "")
+    }
+}

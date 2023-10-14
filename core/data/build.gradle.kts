@@ -5,7 +5,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.serialization)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -37,8 +38,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    kaptAndroidTest(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":core:model"))
@@ -50,3 +51,4 @@ dependencies {
 kotlin{
     jvmToolchain(17)
 }
+

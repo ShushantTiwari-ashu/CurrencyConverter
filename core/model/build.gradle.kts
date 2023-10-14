@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -32,3 +33,4 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
 }
+

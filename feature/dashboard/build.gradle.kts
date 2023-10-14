@@ -3,7 +3,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -48,7 +49,7 @@ dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     testImplementation(project(":core:test"))
-    kaptAndroidTest(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.testing)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockk)
     implementation(libs.kotlinx.datetime)
@@ -57,8 +58,8 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.material3)
     implementation(libs.compose.foundation)
-    kapt(libs.hilt.compiler)
-    kaptAndroidTest(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
@@ -68,15 +69,16 @@ dependencies {
     androidTestImplementation(libs.junit4)
     androidTestImplementation(project(":core:test"))
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation("io.mockk:mockk-android:1.13.5")
-    androidTestImplementation("io.mockk:mockk-agent:1.13.5")
+    androidTestImplementation(libs.mock.android)
+    androidTestImplementation(libs.mock.agent)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
 }
 
 kotlin {
     jvmToolchain(17)
 }
+

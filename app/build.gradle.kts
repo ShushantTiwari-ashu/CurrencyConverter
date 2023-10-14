@@ -5,7 +5,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hilt)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -13,7 +14,6 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "dev.shushant.currencyconverter"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -63,7 +63,7 @@ android {
 dependencies {
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.appcompat)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
@@ -79,6 +79,7 @@ dependencies {
 
 }
 
-kotlin{
+kotlin {
     jvmToolchain(17)
 }
+

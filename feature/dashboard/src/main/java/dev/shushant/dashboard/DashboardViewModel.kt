@@ -87,8 +87,6 @@ class DashboardViewModel @Inject constructor(
                 }.also {
                     convertCurrency(baseCurrency, amount)
                 }
-
-                else -> {}
             }
         }
     }

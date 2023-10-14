@@ -1,9 +1,7 @@
 package dev.shushant.network.model
 
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Serializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -22,8 +20,6 @@ typealias CurrencyName = String
 data class CurrenciesResponse(
     val data: Map<CurrencyCode, CurrencyName>
 ) {
-    @OptIn(ExperimentalSerializationApi::class)
-    @Serializer(forClass = CurrenciesResponse::class)
     companion object CurrenciesResponseDeserializer : KSerializer<CurrenciesResponse> {
         override val descriptor: SerialDescriptor =
             buildClassSerialDescriptor("CurrenciesResponse") {

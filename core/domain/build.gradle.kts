@@ -2,7 +2,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -24,8 +25,8 @@ android {
 }
 
 dependencies {
-    kapt(libs.hilt.compiler)
-    kaptAndroidTest(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
     implementation(libs.hilt.android)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.datetime)
@@ -38,3 +39,4 @@ dependencies {
 kotlin{
     jvmToolchain(17)
 }
+

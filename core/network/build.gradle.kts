@@ -5,7 +5,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.serialization)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.sonarqube)
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -49,7 +50,7 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp.logging)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)
@@ -58,3 +59,4 @@ dependencies {
 kotlin{
     jvmToolchain(17)
 }
+
