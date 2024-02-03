@@ -15,6 +15,6 @@ sonarqube {
         property("sonar.host.url", "http://localhost:9000")
         property("sonar.projectKey", "CurrencyConverter")
         property("sonar.projectName", "CurrencyConverter")
-        property("sonar.token", "sqp_6a9e43efaa95b3609e5b483efd3fbdbf9c63a491")
+        property("sonar.token", "")
     }
 }
