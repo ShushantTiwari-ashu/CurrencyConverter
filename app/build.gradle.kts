@@ -16,8 +16,8 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "dev.shushant.test.HiltTestRunner"
         vectorDrawables {
@@ -33,6 +33,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -76,6 +77,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.material3)
     implementation(project(":feature:dashboard"))
+    implementation(libs.review.ktx)
 
 }
 

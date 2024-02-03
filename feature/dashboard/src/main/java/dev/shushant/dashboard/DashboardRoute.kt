@@ -1,6 +1,5 @@
 package dev.shushant.dashboard
 
-import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -67,7 +66,6 @@ fun DashboardRoute(
     )
 }
 
-@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 @Composable
 fun DashboardScreen(
     modifier: Modifier,

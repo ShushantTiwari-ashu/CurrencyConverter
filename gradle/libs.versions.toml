@@ -1,17 +1,18 @@
 [versions]
-agp = "8.2.0"
-kotlin = "1.9.10"
-compose-compiler = "1.5.3"
+agp = "8.2.2"
+kotlin = "1.9.21"
+compose-compiler = "1.5.7"
 core-ktx = "1.10.1"
+reviewKtx = "2.0.1"
 secrets = "2.0.1"
 junit4 = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-version = "3.5.1"
 mockito = "5.5.0"
 mockk = "1.13.8"
-lifecycle-runtime-ktx = "2.6.2"
-activity-compose = "1.8.0"
-compose-bom = "2023.10.00"
+lifecycle-runtime-ktx = "2.7.0"
+activity-compose = "1.8.2"
+compose-bom = "2024.01.00"
 androidx-navigation = "2.6.0"
 okhttp = "4.10.0"
 retrofit = "2.9.0"
@@ -20,15 +21,15 @@ androidxTestCore = "1.5.0"
 androidxTestRules = "1.5.0"
 androidxTestRunner = "1.5.0"
 androidxUiAutomator = "2.2.0"
-room = "2.5.2"
+room = "2.6.1"
 coil = "2.4.0"
 turbine = "0.12.1"
 coroutines = "1.7.3"
-hilt = "2.48"
+hilt = "2.48.1"
 hiltExt = "1.0.0"
-androidxHiltNavigationCompose = "1.0.0"
-androidx-lifecycle-compose = "2.6.2"
-androidx-lifecycle-runtime-compose = "2.6.2"
+androidxHiltNavigationCompose = "1.1.0"
+androidx-lifecycle-compose = "2.7.0"
+androidx-lifecycle-runtime-compose = "2.7.0"
 robolectric = "4.9.2"
 kotlinxSerializationJson = "1.5.1"
 kotlinxDatetime = "0.4.1"
@@ -38,7 +39,7 @@ appcompat = "1.6.1"
 material = "1.9.0"
 accompanist = "0.30.1"
 androidxWindowManager = "1.1.0"
-ksp = "1.9.10-1.0.13"
+ksp = "1.9.21-1.0.16"
 
 [libraries]
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
@@ -50,15 +51,16 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version = "1.5.3" }
-androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version = "1.5.3" }
-androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test", version = "1.5.3" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version = "1.6.0" }
+androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version = "1.6.0" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test", version = "1.6.0" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.1.2" }
+material3 = { group = "androidx.compose.material3", name = "material3", version = "1.2.0-rc01" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
@@ -78,7 +80,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version = "1.5.3" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version = "1.6.0" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
