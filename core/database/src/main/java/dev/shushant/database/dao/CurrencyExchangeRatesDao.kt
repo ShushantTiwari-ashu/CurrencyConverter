@@ -9,7 +9,6 @@ import dev.shushant.database.entity.CurrenciesExchangeRateEntity.Companion.TABLE
 
 @Dao
 interface CurrencyExchangeRatesDao {
-
     @Insert
     suspend fun insert(rates: CurrenciesExchangeRateEntity): Long
 
@@ -24,5 +23,4 @@ interface CurrencyExchangeRatesDao {
         deleteRecord()
         insert(rates)
     }
-
 }

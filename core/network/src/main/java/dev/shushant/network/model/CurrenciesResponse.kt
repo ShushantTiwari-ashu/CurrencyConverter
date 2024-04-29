@@ -18,7 +18,7 @@ typealias CurrencyName = String
 
 @Serializable(with = CurrenciesResponse.CurrenciesResponseDeserializer::class)
 data class CurrenciesResponse(
-    val data: Map<CurrencyCode, CurrencyName>
+    val data: Map<CurrencyCode, CurrencyName>,
 ) {
     companion object CurrenciesResponseDeserializer : KSerializer<CurrenciesResponse> {
         override val descriptor: SerialDescriptor =
@@ -27,16 +27,21 @@ data class CurrenciesResponse(
             }
 
         override fun deserialize(decoder: Decoder): CurrenciesResponse {
-            val json = Json.decodeFromJsonElement(
-                JsonObject.serializer(), decoder.decodeSerializableValue(
-                    JsonElement.serializer()
+            val json =
+                Json.decodeFromJsonElement(
+                    JsonObject.serializer(),
+                    decoder.decodeSerializableValue(
+                        JsonElement.serializer(),
+                    ),
                 )
-            )
             val data = json.mapValues { it.value.jsonPrimitive.content }
             return CurrenciesResponse(data)
         }
 
-        override fun serialize(encoder: Encoder, value: CurrenciesResponse) {
+        override fun serialize(
+            encoder: Encoder,
+            value: CurrenciesResponse,
+        ) {
             // Serialization is not needed for this example
             throw UnsupportedOperationException("Serialization is not supported")
         }

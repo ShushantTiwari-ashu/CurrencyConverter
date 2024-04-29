@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -23,7 +22,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
     }
 
     buildTypes {
@@ -31,7 +29,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -78,10 +76,8 @@ dependencies {
     implementation(libs.material3)
     implementation(project(":feature:dashboard"))
     implementation(libs.review.ktx)
-
 }
 
 kotlin {
     jvmToolchain(17)
 }
-

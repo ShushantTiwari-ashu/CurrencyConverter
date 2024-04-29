@@ -13,18 +13,14 @@ import dev.shushant.database.model.LocalDataSource
 @InstallIn(SingletonComponent::class)
 object DaosModule {
     @Provides
-    fun providesCurrencyDao(
-        database: AppDatabase,
-    ): CurrencyDao = database.currencyDao()
+    fun providesCurrencyDao(database: AppDatabase): CurrencyDao = database.currencyDao()
 
     @Provides
-    fun providesCurrencyExchangeDao(
-        database: AppDatabase,
-    ): CurrencyExchangeRatesDao = database.currencyExchangeDao()
+    fun providesCurrencyExchangeDao(database: AppDatabase): CurrencyExchangeRatesDao = database.currencyExchangeDao()
 
     @Provides
     fun providesLocalDataSource(
         currencyDao: CurrencyDao,
-        currencyExchangeRatesDao: CurrencyExchangeRatesDao
+        currencyExchangeRatesDao: CurrencyExchangeRatesDao,
     ) = LocalDataSource(currencyDao, currencyExchangeRatesDao)
 }

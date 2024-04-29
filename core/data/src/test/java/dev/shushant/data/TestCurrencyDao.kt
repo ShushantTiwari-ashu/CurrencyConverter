@@ -5,6 +5,7 @@ import dev.shushant.database.entity.CurrenciesEntity
 
 class TestCurrencyDao : CurrencyDao {
     private var currency: CurrenciesEntity? = null
+
     override suspend fun insert(currency: CurrenciesEntity): Long {
         this.currency = currency
         return 0

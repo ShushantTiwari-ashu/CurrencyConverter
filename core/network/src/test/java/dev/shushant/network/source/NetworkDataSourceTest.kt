@@ -20,10 +20,10 @@ import org.junit.Test
 import retrofit2.Response
 
 class NetworkDataSourceTest {
-    @get: Rule(order = 1)
+    @get:Rule(order = 1)
     val dispatcherRule = MainDispatcherRule()
 
-    @get: Rule(order = 2)
+    @get:Rule(order = 2)
     val mockkRule = MockKRule(this)
 
     @MockK
@@ -39,44 +39,52 @@ class NetworkDataSourceTest {
     }
 
     @Test
-    fun `test currencies api success`() = runTest(dispatcherRule.testDispatcher) {
-        val obj = json.encodeToJsonElement(json.encodeToJsonElement(currencies)) as JsonObject
-        coEvery { service.getCurrencies() } returns Response.success(obj)
-        assert(networkDataSource.getCurrencies() == Result.success(CurrenciesResponse(data = currencies)))
-    }
+    fun `test currencies api success`() =
+        runTest(dispatcherRule.testDispatcher) {
+            val obj = json.encodeToJsonElement(json.encodeToJsonElement(currencies)) as JsonObject
+            coEvery { service.getCurrencies() } returns Response.success(obj)
+            assert(networkDataSource.getCurrencies() == Result.success(CurrenciesResponse(data = currencies)))
+        }
 
     @Test
-    fun `test currencies api error`() = runTest(dispatcherRule.testDispatcher) {
-        coEvery { service.getCurrencies() } returns Response.error(
-            500,
-            "".toResponseBody()
-        )
-        assert(
-            networkDataSource.getCurrencies().isFailure
-        )
-    }
-
-    @Test
-    fun `test getCurrencyExchangeRate api success`() = runTest(dispatcherRule.testDispatcher) {
-        val actual = CurrencyExchangeRateResponse(rates = exchangeRates)
-        coEvery { service.getCurrencyRates(any(), any()) } returns Response.success(
-            actual
-        )
-        assert(
-            networkDataSource.getCurrencyExchangeRate("USD", "") == Result.success(
-                actual
+    fun `test currencies api error`() =
+        runTest(dispatcherRule.testDispatcher) {
+            coEvery { service.getCurrencies() } returns
+                Response.error(
+                    500,
+                    "".toResponseBody(),
+                )
+            assert(
+                networkDataSource.getCurrencies().isFailure,
             )
-        )
-    }
+        }
 
     @Test
-    fun `test getCurrencyExchangeRate api error`() = runTest(dispatcherRule.testDispatcher) {
-        coEvery { service.getCurrencyRates(any(), any()) } returns Response.error(
-            500,
-            "".toResponseBody()
-        )
-        assert(
-            networkDataSource.getCurrencyExchangeRate("USD", "").isFailure
-        )
-    }
+    fun `test getCurrencyExchangeRate api success`() =
+        runTest(dispatcherRule.testDispatcher) {
+            val actual = CurrencyExchangeRateResponse(rates = exchangeRates)
+            coEvery { service.getCurrencyRates(any(), any()) } returns
+                Response.success(
+                    actual,
+                )
+            assert(
+                networkDataSource.getCurrencyExchangeRate("USD", "") ==
+                    Result.success(
+                        actual,
+                    ),
+            )
+        }
+
+    @Test
+    fun `test getCurrencyExchangeRate api error`() =
+        runTest(dispatcherRule.testDispatcher) {
+            coEvery { service.getCurrencyRates(any(), any()) } returns
+                Response.error(
+                    500,
+                    "".toResponseBody(),
+                )
+            assert(
+                networkDataSource.getCurrencyExchangeRate("USD", "").isFailure,
+            )
+        }
 }

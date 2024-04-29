@@ -5,8 +5,9 @@ import dev.shushant.network.model.CurrencyExchangeRateResponse
 
 interface NetworkDataSource {
     suspend fun getCurrencies(): Result<CurrenciesResponse>
+
     suspend fun getCurrencyExchangeRate(
         base: String,
-        symbols: String
+        symbols: String,
     ): Result<CurrencyExchangeRateResponse>
 }

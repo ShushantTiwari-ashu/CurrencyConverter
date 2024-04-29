@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.sonarqube)
+
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -14,7 +14,7 @@ android {
     namespace = "dev.shushant.network"
     compileSdk = 34
 
-    defaultConfig{
+    defaultConfig {
         minSdk = 24
     }
 
@@ -56,7 +56,6 @@ dependencies {
     implementation(libs.retrofit.kotlin.serialization)
 }
 
-kotlin{
+kotlin {
     jvmToolchain(17)
 }
-

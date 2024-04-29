@@ -20,7 +20,6 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class DashboardRouteKtTest {
-
     @get:Rule
     val composeTestRule = createAndroidComposeRule<HiltComponentActivity>()
 
@@ -53,11 +52,19 @@ class DashboardRouteKtTest {
 
     @Test
     fun test_currency_chooser_to_select_currency() {
-        val dashboardState = DashboardUIState(currencies = Currencies(items = currencies.map {
-            Currencies.Item(
-                it.key, it.value
+        val dashboardState =
+            DashboardUIState(
+                currencies =
+                    Currencies(
+                        items =
+                            currencies.map {
+                                Currencies.Item(
+                                    it.key,
+                                    it.value,
+                                )
+                            },
+                    ),
             )
-        }))
         val currencyCode = dashboardState.currencies?.items?.first()?.currencyCode ?: ""
         val currencyName = dashboardState.currencies?.items?.first()?.currencyName ?: ""
         composeTestRule.setContent {
@@ -75,22 +82,28 @@ class DashboardRouteKtTest {
         composeTestRule.onNodeWithTag(currencyName).assertExists().performClick()
 
         composeTestRule.onNodeWithTag(
-            getFlagEmoji(currencyCode).plus(currencyCode), useUnmergedTree = true
+            getFlagEmoji(currencyCode).plus(currencyCode),
+            useUnmergedTree = true,
         ).assertExists()
-
     }
 
     @Test
     fun test_exchange_rates_ui() {
-        val dashboardState = DashboardUIState(
-            currencies = Currencies(items = currencies.map {
-                Currencies.Item(
-                    it.key, it.value
-                )
-            }),
-            exchangeRates = exchangeRates,
-            convertedAmount = convertCurrency("USD", 123.toBigDecimal())
-        )
+        val dashboardState =
+            DashboardUIState(
+                currencies =
+                    Currencies(
+                        items =
+                            currencies.map {
+                                Currencies.Item(
+                                    it.key,
+                                    it.value,
+                                )
+                            },
+                    ),
+                exchangeRates = exchangeRates,
+                convertedAmount = convertCurrency("USD", 123.toBigDecimal()),
+            )
         val currencyName = dashboardState.currencies?.items?.first()?.currencyName ?: ""
 
         composeTestRule.setContent {
@@ -109,10 +122,11 @@ class DashboardRouteKtTest {
         composeTestRule.onNodeWithTag(currencyName).assertExists().performClick()
         composeTestRule.waitForIdle()
         composeTestRule.onNodeWithTag("Converted_currencies").assertExists().performScrollToNode(
-            hasTestTag(dashboardState.convertedAmount.let {
-                it.keys.first().plus(it.values.first())
-            })
+            hasTestTag(
+                dashboardState.convertedAmount.let {
+                    it.keys.first().plus(it.values.first())
+                },
+            ),
         ).assertExists()
     }
-
 }

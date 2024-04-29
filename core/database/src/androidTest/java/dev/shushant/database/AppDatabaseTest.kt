@@ -21,29 +21,30 @@ class AppDatabaseTest {
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(
-            context,
-            AppDatabase::class.java,
-        ).build()
+        db =
+            Room.inMemoryDatabaseBuilder(
+                context,
+                AppDatabase::class.java,
+            ).build()
         currencyDao = db.currencyDao()
         currencyExchangeRatesDao = db.currencyExchangeDao()
     }
 
     @Test
-    fun fetch_currencies_from_database() = runTest {
-        currencyDao.insertCurrencies(currency = CurrenciesEntity(currencies = currencies))
-        val currencies = currencyDao.getCurrencies()
+    fun fetch_currencies_from_database() =
+        runTest {
+            currencyDao.insertCurrencies(currency = CurrenciesEntity(currencies = currencies))
+            val currencies = currencyDao.getCurrencies()
 
-        assert(currencies?.currencies == dev.shushant.test.currencies)
-    }
+            assert(currencies?.currencies == dev.shushant.test.currencies)
+        }
 
     @Test
-    fun fetch_exchangeRates_from_database() = runTest {
-        currencyExchangeRatesDao.insertExchangeRates(rates = CurrenciesExchangeRateEntity(rates = exchangeRates))
-        val exchangeRate = currencyExchangeRatesDao.getExchangeRates()
+    fun fetch_exchangeRates_from_database() =
+        runTest {
+            currencyExchangeRatesDao.insertExchangeRates(rates = CurrenciesExchangeRateEntity(rates = exchangeRates))
+            val exchangeRate = currencyExchangeRatesDao.getExchangeRates()
 
-        assert(exchangeRate?.rates == exchangeRates)
-    }
-
-
+            assert(exchangeRate?.rates == exchangeRates)
+        }
 }

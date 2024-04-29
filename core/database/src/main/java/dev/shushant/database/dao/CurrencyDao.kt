@@ -9,7 +9,6 @@ import dev.shushant.database.entity.CurrenciesEntity.Companion.TABLE_NAME
 
 @Dao
 interface CurrencyDao {
-
     @Insert
     suspend fun insert(currency: CurrenciesEntity): Long
 

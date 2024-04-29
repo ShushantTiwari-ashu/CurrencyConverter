@@ -5,5 +5,5 @@ import dev.shushant.database.dao.CurrencyExchangeRatesDao
 
 data class LocalDataSource(
     val currencyDao: CurrencyDao,
-    val currencyExchangeRatesDao: CurrencyExchangeRatesDao
+    val currencyExchangeRatesDao: CurrencyExchangeRatesDao,
 )

@@ -43,18 +43,20 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         CenterAlignedTopAppBar(
                             title = { Text(text = stringResource(id = R.string.app_name)) },
-                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                titleContentColor = MaterialTheme.colorScheme.onSecondary
-                            )
+                            colors =
+                                TopAppBarDefaults.centerAlignedTopAppBarColors(
+                                    containerColor = MaterialTheme.colorScheme.primary,
+                                    titleContentColor = MaterialTheme.colorScheme.onSecondary,
+                                ),
                         )
-                    }
+                    },
                 ) { padding ->
                     DashboardRoute(
                         modifier = Modifier.padding(padding),
                         onShowSnackbar = { message, actionText ->
                             snackbarHostState.showSnackbar(message, actionText)
-                        })
+                        },
+                    )
                 }
             }
         }
@@ -84,7 +86,6 @@ class MainActivity : ComponentActivity() {
                 @ReviewErrorCode val reviewErrorCode =
                     (task.exception as ReviewException).errorCode
                 Log.d("requestReview", reviewErrorCode.toString())
-
             }
         }
     }
