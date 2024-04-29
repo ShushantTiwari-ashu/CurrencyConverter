@@ -11,24 +11,23 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.updateAndGet
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseViewModel<STATE : State>(initialState: STATE) : ViewModel(),CoroutineScope {
-
+abstract class BaseViewModel<STATE : State>(initialState: STATE) : ViewModel(), CoroutineScope {
     /**
      * Mutable State of this ViewModel
      */
     private val _state = MutableStateFlow(initialState)
 
     private val parentJob = Job()
-    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        throwable.printStackTrace()
-    }
+    private val coroutineExceptionHandler =
+        CoroutineExceptionHandler { _, throwable ->
+            throwable.printStackTrace()
+        }
 
     override val coroutineContext: CoroutineContext
         get() = parentJob + coroutineExceptionHandler + Dispatchers.Main
 
     protected val viewModelScope: CoroutineScope
         get() = CoroutineScope(coroutineContext)
-
 
     /**
      * State to be exposed to the UI layer

@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.sonarqube)
 }
 
 android {
@@ -36,7 +35,6 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockk)
 }
-kotlin{
+kotlin {
     jvmToolchain(17)
 }
-

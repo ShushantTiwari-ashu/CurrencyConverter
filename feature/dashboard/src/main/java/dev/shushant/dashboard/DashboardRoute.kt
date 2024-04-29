@@ -62,7 +62,7 @@ fun DashboardRoute(
     DashboardScreen(
         dashboardState = uiState,
         modifier = modifier,
-        updateBaseCurrency = dashboardViewModel::updateBaseCurrency
+        updateBaseCurrency = dashboardViewModel::updateBaseCurrency,
     )
 }
 
@@ -81,7 +81,7 @@ fun DashboardScreen(
     val placeHolder = stringResource(id = R.string.choose_currency)
     var selectedItem by remember {
         mutableStateOf(
-            placeHolder
+            placeHolder,
         )
     }
     val coroutineScope = rememberCoroutineScope()
@@ -93,7 +93,8 @@ fun DashboardScreen(
     }
 
     Box(
-        contentAlignment = Alignment.TopCenter, modifier = modifier.fillMaxSize()
+        contentAlignment = Alignment.TopCenter,
+        modifier = modifier.fillMaxSize(),
     ) {
         Column(modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp)) {
             TextField(
@@ -102,54 +103,62 @@ fun DashboardScreen(
                     val sanitizedValue = s.filter { it.isDigit() || it == '.' }
                     amount = sanitizedValue
                 },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag(stringResource(R.string.enter_amount_to_convert)),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .testTag(stringResource(R.string.enter_amount_to_convert)),
                 shape = RoundedCornerShape(10.dp),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Decimal,
-                    imeAction = ImeAction.Done
-                ),
+                keyboardOptions =
+                    KeyboardOptions(
+                        keyboardType = KeyboardType.Decimal,
+                        imeAction = ImeAction.Done,
+                    ),
                 placeholder = { Text(text = stringResource(R.string.enter_amount_to_convert)) },
-                colors = TextFieldDefaults.colors(
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                    errorIndicatorColor = Color.Transparent
-                )
+                colors =
+                    TextFieldDefaults.colors(
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        errorIndicatorColor = Color.Transparent,
+                    ),
             )
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag(placeHolder)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .testTag(placeHolder),
             ) {
                 TextButton(
                     onClick = {
                         expanded = expanded.not()
                         coroutineScope.launch {
-                            val item = dashboardState.currencies?.items?.find {
-                                it.currencyCode == selectedItem.takeLast(3)
-                            }
+                            val item =
+                                dashboardState.currencies?.items?.find {
+                                    it.currencyCode == selectedItem.takeLast(3)
+                                }
                             currencyState.scrollToItem(
                                 dashboardState.currencies?.items?.indexOf(item).takeIf { it != -1 }
-                                    ?: 0
+                                    ?: 0,
                             )
                         }
                     },
-                    modifier = Modifier
-                        .padding(vertical = 10.dp)
-                        .align(Alignment.CenterEnd)
-                        .testTag("Currency_Chooser")
-                        .background(
-                            shape = RoundedCornerShape(10.dp),
-                            color = MaterialTheme.colorScheme.inverseOnSurface
-                        )
+                    modifier =
+                        Modifier
+                            .padding(vertical = 10.dp)
+                            .align(Alignment.CenterEnd)
+                            .testTag("Currency_Chooser")
+                            .background(
+                                shape = RoundedCornerShape(10.dp),
+                                color = MaterialTheme.colorScheme.inverseOnSurface,
+                            ),
                 ) {
                     Text(
-                        text = selectedItem, modifier = Modifier.testTag(selectedItem)
+                        text = selectedItem,
+                        modifier = Modifier.testTag(selectedItem),
                     )
                     Icon(
-                        Icons.Default.ArrowDropDown, contentDescription = null
+                        Icons.Default.ArrowDropDown,
+                        contentDescription = null,
                     )
                 }
             }
@@ -157,33 +166,36 @@ fun DashboardScreen(
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     state = gridState,
-                    modifier = Modifier.testTag("Converted_currencies")
+                    modifier = Modifier.testTag("Converted_currencies"),
                 ) {
                     dashboardState.convertedAmount.let { convertedAmount ->
                         items(
                             convertedAmount.size,
                             key = {
                                 convertedAmount.keys.elementAt(it)
-                            }) { index ->
+                            },
+                        ) { index ->
                             RoundedBoxWithText(
-                                currencyCode = convertedAmount.keys.elementAt(
-                                    index
-                                ),
-                                decimalNumber = convertedAmount.values.elementAt(index)
+                                currencyCode =
+                                    convertedAmount.keys.elementAt(
+                                        index,
+                                    ),
+                                decimalNumber = convertedAmount.values.elementAt(index),
                             )
                         }
                     }
                 }
                 if (expanded) {
                     LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight(0.5f)
-                            .background(
-                                shape = RoundedCornerShape(10.dp),
-                                color = MaterialTheme.colorScheme.inverseOnSurface
-                            ),
-                        state = currencyState
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight(0.5f)
+                                .background(
+                                    shape = RoundedCornerShape(10.dp),
+                                    color = MaterialTheme.colorScheme.inverseOnSurface,
+                                ),
+                        state = currencyState,
                     ) {
                         items(dashboardState.currencies?.items ?: emptyList()) { item ->
                             DropdownMenuItem(onClick = {
@@ -201,14 +213,11 @@ fun DashboardScreen(
         }
         if (dashboardState.isLoading) {
             CircularProgressIndicator(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .testTag("Loader")
+                modifier =
+                    Modifier
+                        .align(Alignment.Center)
+                        .testTag("Loader"),
             )
         }
     }
 }
-
-
-
-

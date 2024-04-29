@@ -14,16 +14,11 @@ import dev.shushant.data.utils.NetworkMonitor
 @Module
 @InstallIn(SingletonComponent::class)
 interface DataModule {
+    @Binds
+    fun bindsCurrencyRepository(currencyRepository: CurrencyRepositoryImpl): CurrencyRepository
 
     @Binds
-    fun bindsCurrencyRepository(
-        currencyRepository: CurrencyRepositoryImpl
-    ): CurrencyRepository
-
-    @Binds
-    fun bindsNetworkMonitor(
-        networkMonitor: ConnectivityManagerNetworkMonitor
-    ): NetworkMonitor
+    fun bindsNetworkMonitor(networkMonitor: ConnectivityManagerNetworkMonitor): NetworkMonitor
 
     @Binds
     fun bindsDispatcher(appDispatcherImpl: AppDispatcherImpl): AppDispatcher

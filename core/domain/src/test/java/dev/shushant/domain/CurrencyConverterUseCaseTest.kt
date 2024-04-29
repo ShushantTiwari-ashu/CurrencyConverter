@@ -15,11 +15,10 @@ import org.junit.Rule
 import org.junit.Test
 
 class CurrencyConverterUseCaseTest {
-
     @get:Rule(order = 1)
     val mainDispatcherRule = MainDispatcherRule()
 
-    @get: Rule(order = 2)
+    @get:Rule(order = 2)
     val mockkRule = MockKRule(this)
 
     @MockK
@@ -29,34 +28,37 @@ class CurrencyConverterUseCaseTest {
 
     @Before
     fun setup() {
-        coEvery { repository.getCurrencies() } returns Result.success(
-            Currencies(
-                items = currencies.map {
-                    Currencies.Item(
-                        currencyCode = it.key,
-                        currencyName = it.value
-                    )
-                }
+        coEvery { repository.getCurrencies() } returns
+            Result.success(
+                Currencies(
+                    items =
+                        currencies.map {
+                            Currencies.Item(
+                                currencyCode = it.key,
+                                currencyName = it.value,
+                            )
+                        },
+                ),
             )
-        )
         coEvery {
             repository.getCurrencyExchangeRate(
-                any(), any()
+                any(), any(),
             )
         } returns Result.success(CurrencyExchangeRate(rates = exchangeRates))
         useCase = CurrencyConverterUseCase(repository)
     }
 
     @Test
-    fun `test currencies`() = runTest(mainDispatcherRule.testDispatcher) {
-        val currencies = useCase.invoke()
-        assert(currencies.isSuccess)
-    }
+    fun `test currencies`() =
+        runTest(mainDispatcherRule.testDispatcher) {
+            val currencies = useCase.invoke()
+            assert(currencies.isSuccess)
+        }
 
     @Test
-    fun `test exchangeRates`() = runTest(mainDispatcherRule.testDispatcher) {
-        val exchangeRate = useCase.invoke("USD","")
-        assert(exchangeRate.isSuccess)
-    }
-
+    fun `test exchangeRates`() =
+        runTest(mainDispatcherRule.testDispatcher) {
+            val exchangeRate = useCase.invoke("USD", "")
+            assert(exchangeRate.isSuccess)
+        }
 }

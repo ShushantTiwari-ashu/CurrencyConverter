@@ -5,7 +5,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class MapTypeConverter {
-
     @TypeConverter
     fun fromMap(map: Map<String, String>): String {
         return Json.encodeToString(map)

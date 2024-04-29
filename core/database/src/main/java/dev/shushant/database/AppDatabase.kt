@@ -19,5 +19,6 @@ import dev.shushant.database.entity.CurrenciesExchangeRateEntity
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun currencyDao(): CurrencyDao
+
     abstract fun currencyExchangeDao(): CurrencyExchangeRatesDao
 }

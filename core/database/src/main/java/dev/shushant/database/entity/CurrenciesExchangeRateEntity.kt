@@ -15,13 +15,17 @@ data class CurrenciesExchangeRateEntity(
     val disclaimer: String? = "",
     val license: String? = "",
     val rates: Map<String, Double>,
-    val timestamp: Long = Clock.System.now().toEpochMilliseconds()
+    val timestamp: Long = Clock.System.now().toEpochMilliseconds(),
 ) {
     companion object {
         const val TABLE_NAME = "EXCHANGE_RATE"
     }
 }
 
-fun CurrenciesExchangeRateEntity.toCurrencyExchangeRate() = CurrencyExchangeRate(
-    base, disclaimer, license, rates
-)
+fun CurrenciesExchangeRateEntity.toCurrencyExchangeRate() =
+    CurrencyExchangeRate(
+        base,
+        disclaimer,
+        license,
+        rates,
+    )

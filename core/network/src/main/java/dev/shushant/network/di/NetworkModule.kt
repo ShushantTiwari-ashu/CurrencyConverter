@@ -19,16 +19,15 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
-
     @Provides
     @Singleton
-    fun providesNetworkJson(): Json = Json {
-        ignoreUnknownKeys = true
-    }
+    fun providesNetworkJson(): Json =
+        Json {
+            ignoreUnknownKeys = true
+        }
 
     @Provides
     @Singleton
@@ -47,7 +46,10 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit {
+    fun providesRetrofit(
+        okHttpClient: OkHttpClient,
+        json: Json,
+    ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
@@ -57,15 +59,12 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesCurrencyConverterApi(retrofit: Retrofit): CurrencyConverterNetworkApi =
-        retrofit.create()
+    fun providesCurrencyConverterApi(retrofit: Retrofit): CurrencyConverterNetworkApi = retrofit.create()
 
     @Provides
     @Singleton
     fun providesNetworkDataSource(
         api: CurrencyConverterNetworkApi,
         json: Json,
-    ): NetworkDataSource =
-        NetworkDataSourceImpl(api, json)
-
+    ): NetworkDataSource = NetworkDataSourceImpl(api, json)
 }

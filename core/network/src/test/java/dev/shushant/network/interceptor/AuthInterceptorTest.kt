@@ -14,8 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 
 class AuthInterceptorTest {
-
-    @get: Rule
+    @get:Rule
     val mockkRule = MockKRule(this)
 
     @MockK(relaxed = true)
@@ -29,13 +28,15 @@ class AuthInterceptorTest {
 
     @Test
     fun `test intercept adds app_id query parameter`() {
-        val originalRequest = Request.Builder()
-            .url(BuildConfig.BACKEND_URL)
-            .build()
+        val originalRequest =
+            Request.Builder()
+                .url(BuildConfig.BACKEND_URL)
+                .build()
 
-        val modifiedRequest = Request.Builder()
-            .url("${BuildConfig.BACKEND_URL}?app_id=${BuildConfig.OPEN_EXCHANGE_APP_ID}")
-            .build()
+        val modifiedRequest =
+            Request.Builder()
+                .url("${BuildConfig.BACKEND_URL}?app_id=${BuildConfig.OPEN_EXCHANGE_APP_ID}")
+                .build()
 
         every { chain.request() } returns originalRequest
         every { chain.proceed(match { it.url == modifiedRequest.url }) } returns createResponse()
@@ -55,4 +56,3 @@ class AuthInterceptorTest {
             .build()
     }
 }
-

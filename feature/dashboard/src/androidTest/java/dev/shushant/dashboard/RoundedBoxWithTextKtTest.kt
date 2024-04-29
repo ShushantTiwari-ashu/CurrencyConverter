@@ -1,6 +1,5 @@
 package dev.shushant.dashboard
 
-
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
@@ -14,8 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RoundedBoxWithTextTest {
-
+class RoundedBoxWithTextKtTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -23,7 +21,6 @@ class RoundedBoxWithTextTest {
     fun testRoundedBoxWithText() {
         val currencyCode = "USD"
         val decimalNumber = 10.5
-
 
         composeTestRule.setContent {
             MaterialTheme {

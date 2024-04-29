@@ -6,7 +6,7 @@ import retrofit2.Response
 
 suspend fun <T : Any> safeApiCall(
     json: Json,
-    apiCall: suspend () -> Response<T>
+    apiCall: suspend () -> Response<T>,
 ): Result<T> {
     return runCatching {
         apiCall()
@@ -22,12 +22,11 @@ suspend fun <T : Any> safeApiCall(
             Result.failure(
                 Throwable(
                     response.errorBody()?.string()
-                        ?.let { json.decodeFromString<ErrorResponse>(it) }?.message
-                )
+                        ?.let { json.decodeFromString<ErrorResponse>(it) }?.message,
+                ),
             )
         }
     }.getOrElse {
         Result.failure(Throwable("Please check your internet connection..."))
     }
 }
-
